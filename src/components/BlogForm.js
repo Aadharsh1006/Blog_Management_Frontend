@@ -4,7 +4,6 @@ import { Container, Form, Button, Alert, Card } from 'react-bootstrap';
 import { FaPaperPlane, FaTimes } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
 import * as blogPostService from '../api/blogPostService';
-import AnimatedHeaderText from './AnimatedHeaderText';
 
 export default function BlogForm({ mode }) {
   const { id } = useParams();
@@ -86,15 +85,7 @@ export default function BlogForm({ mode }) {
 
 return (
     <>
-      <div className="text-center p-5" style={{ background: 'linear-gradient(90deg, #FFC107, #FF9800)', color: 'white' }}>
-        <AnimatedHeaderText 
-          title={mode === 'create' ? 'Create a New Post' : 'Edit Post'}
-          subtitleSequence={[
-            'Share your thoughts with the world.', 2000,
-            'Craft your next great article.', 2000,
-          ]}
-        />
-      </div>
+      
       <Container className="my-5">
         <Card className="p-4 mx-auto" style={{ maxWidth: '800px' }}>
           <Card.Body>

@@ -1,14 +1,15 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import * as blogPostService from '../api/blogPostService';
-import { Container, Table, Button, Badge, Alert } from 'react-bootstrap';
-import { FaEdit, FaPlus } from 'react-icons/fa';
+import { Container, Table, Button,Badge, Alert } from 'react-bootstrap';
+import { FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
 
 export default function AuthorDashboard() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -29,6 +30,8 @@ export default function AuthorDashboard() {
     fetchAuthorPosts();
   }, [fetchAuthorPosts]);
 
+  
+
   if (loading) return <Container className="mt-4">Loading dashboard...</Container>;
   if (error) return <Container className="mt-4"><Alert variant="danger">{error}</Alert></Container>;
 
@@ -40,13 +43,14 @@ export default function AuthorDashboard() {
           <FaPlus className="me-2" /> New Post
         </Button>
       </div>
+      {message && <Alert variant="info" onClose={() => setMessage('')} dismissible>{message}</Alert>}
       <Table striped bordered hover responsive>
         <thead>
           <tr>
             <th>Title</th>
-            <th>Status</th>
+            <th>Content</th>
             <th>Created At</th>
-            <th>Actions</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -54,20 +58,12 @@ export default function AuthorDashboard() {
             posts.map(post => (
               <tr key={post.id}>
                 <td>{post.title}</td>
+                <td>{post.content}</td>
+                <td>{new Date(post.createdAt).toLocaleDateString()}</td>
                 <td>
                   <Badge bg={post.status === 'PUBLISHED' ? 'success' : 'secondary'}>
                     {post.status}
                   </Badge>
-                </td>
-                <td>{new Date(post.createdAt).toLocaleDateString()}</td>
-                <td>
-                  <Button 
-                    variant="outline-warning" 
-                    size="sm"
-                    onClick={() => navigate(`/posts/${post.id}/edit`)}
-                  >
-                    <FaEdit className="me-1" /> Edit
-                  </Button>
                 </td>
               </tr>
             ))

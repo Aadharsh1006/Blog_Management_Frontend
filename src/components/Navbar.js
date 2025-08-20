@@ -10,40 +10,41 @@ export default function NavbarComponent() {
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    navigate('/');
   };
 
   return (
-    <Navbar expand="lg" className="app-navbar shadow-sm">
+    <Navbar expand="lg" bg="warning" variant="dark" className="shadow-sm sticky-top">
       <Container>
-        <Navbar.Brand as={Link} to="/" className="fw-bold">
+        <Navbar.Brand as={Link} to="/" className="fw-bold text-dark">
           Blog Management
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="border-0" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-          <Nav className="align-items-center">
+          <Nav className="align-items-center gap-2">
+            
             {isLoggedIn ? (
               <>
                 {user.role === 'ADMIN' && (
-                  <Nav.Link as={Link} to="/admin" className="fw-bold nav-link-custom">
+                  <Nav.Link as={Link} to="/admin" className="fw-bold text-dark d-flex align-items-center">
                     <FaUserShield className="me-1" /> Admin
                   </Nav.Link>
                 )}
                 {user.role === 'AUTHOR' && (
-                  <Nav.Link as={Link} to="/dashboard" className="fw-bold nav-link-custom">
+                  <Nav.Link as={Link} to="/dashboard" className="fw-bold text-dark d-flex align-items-center">
                     <FaTachometerAlt className="me-1" /> Dashboard
                   </Nav.Link>
                 )}
-                <Navbar.Text className="mx-3 text-dark">
-                  Welcome, {user?.name || 'User'}
+                <Navbar.Text className="text-dark mx-3">
+                  Welcome, <span className="fw-semibold">{user?.name || 'User'}</span>
                 </Navbar.Text>
-                <Button variant="outline-secondary" size="sm" onClick={handleLogout}>
+                <Button variant="dark" size="sm" onClick={handleLogout} className="d-flex align-items-center">
                   <FaSignOutAlt className="me-2" />
                   Logout
                 </Button>
               </>
             ) : (
-              <Button variant="outline-primary" onClick={() => navigate('/login')}>
+              <Button variant="dark" onClick={() => navigate('/login')} className="d-flex align-items-center">
                 <FaSignInAlt className="me-2" />
                 Login
               </Button>

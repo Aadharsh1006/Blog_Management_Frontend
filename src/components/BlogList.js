@@ -100,7 +100,7 @@ export default function BlogList() {
                     <Button variant="outline-secondary" size="sm" className="me-2" onClick={() => navigate(`/posts/${post.id}`)}>
                       <FaEye className="me-1" /> View
                     </Button>
-                    {(user?.role === 'AUTHOR' && user?.id === post.authorId) || user?.role === 'ADMIN' ? (
+                    {(user?.role === 'AUTHOR' && user?.id === post.authorId)? (
                       <>
                         <Button variant="outline-warning" size="sm" className="me-2" onClick={() => navigate(`/posts/${post.id}/edit`)}>
                           <FaEdit className="me-1" /> Edit

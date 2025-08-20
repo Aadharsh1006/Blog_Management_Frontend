@@ -68,7 +68,7 @@ export default function BlogDetail() {
               <Button variant="secondary" onClick={() => navigate('/')}>
                 <FaArrowLeft className="me-2" />Back to List
               </Button>
-              {(user?.role === 'AUTHOR' && user?.id === post.authorId) || user?.role === 'ADMIN' ? (
+              {(user?.role === 'AUTHOR' && user?.id === post.authorId) || user?.role === 'AUTHOR' ? (
                 <>
                   <Button variant="warning" onClick={() => navigate(`/posts/${post.id}/edit`)}>
                     <FaEdit className="me-2" />Edit

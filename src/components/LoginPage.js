@@ -1,10 +1,8 @@
-// src/components/LoginPage.js
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Container, Form, Button, Alert, Card, Spinner } from 'react-bootstrap';
 import { FaSignInAlt } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
-import AnimatedHeaderText from './AnimatedHeaderText';
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -36,38 +34,57 @@ export default function LoginPage() {
 
   return (
     <>
-      <div className="text-center p-5" style={{ background: 'linear-gradient(90deg, #FFC107, #FF9800)', color: 'white' }}>
-        <AnimatedHeaderText 
-          title="Login"
-          subtitleSequence={[
-            'Access your account to continue.', 2000,
-            'Manage your posts and engage.', 2000,
-          ]}
-        />
-      </div>
+      
       <Container className="my-5">
-        <Card className="p-4 mx-auto" style={{ maxWidth: '500px' }}>
+        <Card
+          className="p-4 mx-auto shadow-sm"
+          style={{ maxWidth: '500px', borderRadius: '12px' }}
+        >
           <Card.Body>
+            
+
             {message && <Alert variant={message.includes('successful') ? 'success' : 'danger'}>{message}</Alert>}
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="email">
                 <Form.Label>Email Address</Form.Label>
-                <Form.Control type="email" name="email" value={formData.email} onChange={handleChange} required />
+                <Form.Control
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Enter your email"
+                  required
+                  className="shadow-sm"
+                />
               </Form.Group>
-
               <Form.Group className="mb-3" controlId="password">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" name="password" value={formData.password} onChange={handleChange} required />
+                <Form.Control
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="Enter your password"
+                  required
+                  className="shadow-sm"
+                />
               </Form.Group>
-
               <div className="d-grid">
-                <Button variant="primary" type="submit" disabled={loading}>
-                  {loading ? <Spinner as="span" animation="border" size="sm" /> : <><FaSignInAlt className="me-2" />Login</>}
+                <Button variant="warning" type="submit" disabled={loading} className="fw-semibold">
+                  {loading ?
+                    (<><Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" className="me-2" />Loading...</>) :
+                    (<><FaSignInAlt className="me-2" />Login</>)
+                  }
                 </Button>
               </div>
             </Form>
             <div className="text-center mt-3">
-              <small>Don't have an account? <Link to="/register">Register here</Link></small>
+              <small>
+                Don't have an account?{' '}
+                <Link to="/register" className="text-decoration-none fw-semibold text-warning">
+                  Register here
+                </Link>
+              </small>
             </div>
           </Card.Body>
         </Card>

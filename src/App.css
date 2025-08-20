@@ -1,62 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-
 body {
-  margin: 0;
-  font-family: 'Montserrat', sans-serif;
-  background-color: #FFF8E1;
-  color: #424242;
+  background-color: #fff8e1; /* subtle warm background */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
 }
 
-#root, .app-container {
+a {
+  color: #FF9800;
+}
+
+a:hover {
+  color: #E65100;
+}
+
+.bg-gradient {
+  background: linear-gradient(90deg, #FFC107, #FF9800);
+}
+
+.app-container {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 }
 
 .main-content {
-  flex-grow: 1;
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-.app-navbar {
-  background: linear-gradient(90deg, #FFC107, #FF9800);
-}
-.navbar-brand, .nav-link-custom {
-  color: white !important;
-  font-weight: 700 !important;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-}
-.nav-link-custom:hover {
-    opacity: 0.8;
-}
-
-.btn-primary {
-  background-color: #FF9800;
-  border-color: #FF9800;
-  font-weight: 600;
-}
-.btn-primary:hover {
-  background-color: #F57C00;
-  border-color: #F57C00;
-}
-
-.card {
-  border: 1px solid #FFECB3;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.card-title {
-  color: #F57C00;
-  font-weight: 700;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
+  flex: 1;
+  padding: 2rem 1rem;
+  max-width: 1140px;
+  margin: 0 auto;
+  width: 100%;
 }

@@ -71,7 +71,7 @@ export default function BlogForm({ mode }) {
       
     try {
       await action;
-      setMessage(`blog post ${mode === 'create' ? 'created' : 'updated'} successfully`);
+      setMessage(`Blog post ${mode === 'create' ? 'created' : 'updated'} successfully`);
       if (process.env.NODE_ENV !== 'test') {
         setTimeout(() => navigate('/dashboard'), 1500);
       }

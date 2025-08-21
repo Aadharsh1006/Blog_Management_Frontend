@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // The URL of your Spring Boot backend
-const API_BASE_URL = 'http://localhost:8080/api';
+const API_BASE_URL = 'http://blogmanagementbackend-production-c050.up.railway.app/api';
 
 // Create a configured instance of Axios
 const apiClient = axios.create({

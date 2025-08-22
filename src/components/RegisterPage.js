@@ -89,6 +89,7 @@ export default function RegisterPage() {
                 >
                   <option value="READER">Reader</option>
                   <option value="AUTHOR">Author</option>
+                  <option value="ADMIN">Admin</option>
                 </Form.Select>
               </Form.Group>
               <div className="d-grid">
